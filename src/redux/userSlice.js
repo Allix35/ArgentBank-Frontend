@@ -1,30 +1,32 @@
-// src/redux/userSlice.js
+
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  token: null,
-  user: null,
+  token: null, // Token JWT when connecte
+  user: null, // User info
   isAuthenticated: false
 }
 
-const userSlice = createSlice({
+// userSlice created with name, initial state & reducers
+
+const userSlice = createSlice({ 
   name: 'user',
   initialState,
   reducers: {
-    loginSuccess: (state, action) => {
-      state.token = action.payload.token
-      state.isAuthenticated = true
+    loginSuccess: (state, action) => { // Action called if connected
+      state.token = action.payload.token // Token stock in REDUX
+      state.isAuthenticated = true // True to unlock protected roads
     },
-    logout: (state) => {
-      state.token = null
-      state.user = null
+    logout: (state) => { // Action called when disconnected
+      state.token = null // Delete token
+      state.user = null // Delete user info
       state.isAuthenticated = false
     },
-    setUser: (state, action) => {
-      state.user = action.payload
+    setUser: (state, action) => { // Action called to stock user info after API call
+      state.user = action.payload // Profil data stocked in store
     }
   }
 })
 
 export const { loginSuccess, logout, setUser } = userSlice.actions
-export default userSlice.reducer
+export default userSlice.reducer // Export reducer to put it in global store
