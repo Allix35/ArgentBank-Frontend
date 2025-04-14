@@ -1,4 +1,4 @@
-// src/App.jsx
+
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
@@ -10,13 +10,13 @@ import PrivateRoute from './components/PrivateRoute'
 function App() {
   return (
     <Routes>
-      {/* 🏠 Page d’accueil */}
+      {/* Homepage */}
       <Route path="/" element={<Home />} />
 
-      {/* 🔐 Page de connexion */}
+      {/* Connexion page */}
       <Route path="/sign-in" element={<SignIn />} />
 
-      {/* 👤 Page de profil (protégée) */}
+      {/* Profil page */}
       <Route
         path="/user"
         element={
@@ -26,7 +26,7 @@ function App() {
         }
       />
 
-      {/* 📊 Page des transactions (protégée) */}
+      {/* Transactions page */}
       <Route
         path="/transactions/:accountId"
         element={

@@ -21,7 +21,7 @@ function User() {
     const fetchUserData = async () => {
       try {
         const userData = await getUserProfile(token)  // Call API for user profil
-        dispatch(setUser(userData))  // Stock inf in Redux
+        dispatch(setUser(userData))  // Stock info in Redux
 
         const accountsData = await getAccounts(token)  // Call API for account
         setAccounts(accountsData.body || accountsData)  // store accounts locally
