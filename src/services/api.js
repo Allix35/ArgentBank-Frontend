@@ -1,12 +1,12 @@
-// ✅ Connexion utilisateur - récupère le token JWT si les identifiants sont corrects
+// User connexion - Get token JWT if correct ID
 export async function loginUser(email, password) {
   try {
     const response = await fetch('http://localhost:3001/api/v1/user/login', {
-      method: 'POST', // On envoie une requête POST pour se connecter
+      method: 'POST', 
       headers: {
-        'Content-Type': 'application/json', // Le corps de la requête est au format JSON
+        'Content-Type': 'application/json', // Json format request
       },
-      body: JSON.stringify({ email, password }), // On envoie l'email et le mot de passe
+      body: JSON.stringify({ email, password }), // Sending email & password
     })
 
     const data = await response.json()
@@ -15,20 +15,20 @@ export async function loginUser(email, password) {
       throw new Error(data.message || 'Erreur lors de la connexion')
     }
 
-    return data.body.token // ✅ Si la connexion est réussie, on récupère le token JWT
+    return data.body.token // Get token if connexion succeed
   } catch (error) {
     console.error('Erreur login :', error)
     throw error
   }
 }
 
-// ✅ Récupération du profil utilisateur avec le token JWT
+// Get user profil with token
 export async function getUserProfile(token) {
   try {
     const response = await fetch('http://localhost:3001/api/v1/user/profile', {
-      method: 'GET', // Requête GET pour obtenir le profil
+      method: 'GET', // Obtain profil
       headers: {
-        Authorization: `Bearer ${token}`, // ✅ Le token JWT est envoyé dans l'en-tête Authorization
+        Authorization: `Bearer ${token}`, // Token JWT is send to Authorization header
         'Content-Type': 'application/json',
       },
     })
@@ -39,23 +39,23 @@ export async function getUserProfile(token) {
       throw new Error(data.message || 'Erreur lors de la récupération du profil')
     }
 
-    return data.body // ✅ On récupère les données utilisateur : { firstName, lastName, email, userName }
+    return data.body // Get user data
   } catch (error) {
     console.error('Erreur récupération profil :', error)
     throw error
   }
 }
 
-// ✅ Mise à jour du nom d'utilisateur (userName) via une requête PUT
+// Update user name via PUT request
 export async function updateUsername(token, newUserName) {
   try {
     const response = await fetch('http://localhost:3001/api/v1/user/profile', {
-      method: 'PUT', // Requête PUT pour modifier des données
+      method: 'PUT', // To modify data
       headers: {
-        Authorization: `Bearer ${token}`, // ✅ On sécurise la requête avec le token JWT
+        Authorization: `Bearer ${token}`, 
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ userName: newUserName }), // On envoie le nouveau userName
+      body: JSON.stringify({ userName: newUserName }), // Get new user name
     })
 
     const data = await response.json()
@@ -64,19 +64,19 @@ export async function updateUsername(token, newUserName) {
       throw new Error(data.message || 'Erreur lors de la mise à jour du username')
     }
 
-    return data.body // ✅ Renvoie le nouvel userName modifié
+    return data.body // Send new user name
   } catch (error) {
     console.error('Erreur updateUsername :', error)
     throw error
   }
 }
 
-// ✅ Récupération des transactions d’un compte spécifique (mocké)
+// Get account transactions from specific account
 export async function getTransactions(token, accountId) {
-  // Token et ID du compte seraient utilisés dans un vrai back-end
+  
   void token
   void accountId
-  await new Promise((resolve) => setTimeout(resolve, 300)) // ⏱️ Simule un délai
+  await new Promise((resolve) => setTimeout(resolve, 300)) 
 
   return [
     {
@@ -89,13 +89,13 @@ export async function getTransactions(token, accountId) {
       note: "lorem ipsum",
       type: "Electronic"
     }
-  ] // ✅ Donnée fictive retournée
+  ] // Data return
 }
 
-// ✅ Récupération des comptes bancaires de l’utilisateur connecté (mocké)
+// Get bank account when user connected
 export async function getAccounts(token) {
-  void token // Le token serait utilisé dans un vrai appel sécurisé
-  await new Promise((resolve) => setTimeout(resolve, 300)) // ⏱️ Délai simulé
+  void token 
+  await new Promise((resolve) => setTimeout(resolve, 300)) 
 
   return {
     body: [
@@ -118,5 +118,5 @@ export async function getAccounts(token) {
         description: "Current balance"
       }
     ]
-  } // ✅ Liste fictive de comptes retournée
+  } // Account list return
 }

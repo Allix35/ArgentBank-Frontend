@@ -3,11 +3,10 @@ import { createSlice } from "@reduxjs/toolkit"
 // Import fonction to call API 
 import { getAccounts } from "../services/api"
 
-// Inital state of slice : empty account list, default status, no error
 const initialState = {
-  accounts: [],   // Store user bank account
-  status: "idle",     
-  error: null,  // Store error during API call
+  accounts: [],   // No account
+  status: "idle",  // Idle status (then loading -->succeed/failed)   
+  error: null,  // No error
 }
 
 // Slice creation "account"

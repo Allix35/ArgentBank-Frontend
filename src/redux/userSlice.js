@@ -2,9 +2,9 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  token: null, // Token JWT when connecte
-  user: null, // User info
-  isAuthenticated: false
+  token: null, // Token not connected, no data
+  user: null, // No user data
+  isAuthenticated: false // User not connected
 }
 
 // userSlice created with name, initial state & reducers

@@ -34,7 +34,7 @@ function SignInForm() {
       navigate("/user")
     } catch (error) {
       console.error("Erreur de connexion :", error)
-      alert("Erreur : " + error.message) // Error message to user displaying
+      alert("Erreur : " + error.message) // Manage error message 
     }
   }
 
